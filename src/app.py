@@ -6,6 +6,10 @@ app = Flask(__name__)
 def main():    
     return render_template("index.html")
 
+@app.route("/productos")
+def productos():    
+    return render_template("productos.html")
+
 if __name__ == "__main__":
     app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.run(debug = True)
