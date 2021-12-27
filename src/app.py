@@ -1,6 +1,15 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/tienda.db'
+db = SQLAlchemy(app)
+
+class Productos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    codigo_barra = db.Column(db.String(250))
+    nombre = db.Column(db.String(250))
+    precio = db.Column(db.Integer())
 
 @app.route("/")
 def main():    
