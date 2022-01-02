@@ -54,25 +54,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user">
+                <form action="/crear-producto" method="POST" class="user">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="codigo_barra"
-                            placeholder="Codigo de Barra...">
+                        <input type="text" name="codigo_barra" class="form-control form-control-user" 
+                            id="codigo_barra" placeholder="Codigo de Barra...">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user"
+                        <input type="text" name="nombre" class="form-control form-control-user"
                             id="nombre" placeholder="Producto...">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control form-control-user"
+                        <input type="number" name="precio" class="form-control form-control-user"
                             id="precio" placeholder="Precio...">
-                    </div>                                     
-                </form>
+                    </div>                
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="">Guardar</a>
-            </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div></form>
         </div>
     </div>
 </div>
