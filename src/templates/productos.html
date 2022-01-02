@@ -13,13 +13,16 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Acciones</div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#agregar">
-                        <i class="far fa-calendar-plus"></i> Agregar
+                        <i class="far fa-calendar-plus"></i> Agregar Producto
                     </a>                                
                 </div>
             </div>
         </div>
         <!-- Card Body -->
-        <div class="card-body">                                                                       
+        <div class="card-body">
+            {% if not productos %}
+                <div class="alert alert-info">No Hay Productos</div>
+            {% else %}
             <table class="table table-striped table-hover">
                 <thead>
                     <th>Id</th>
@@ -28,19 +31,22 @@
                     <th>Precio</th>                                  
                     <th class="all">Acciones</th>
                 </thead>
-                <tbody>                                  
+                <tbody>
+                    {% for item in productos %}                               
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>                                      
-                        <td></td>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.codigo_barra }}</td>
+                        <td>{{ item.nombre }}</td>                                      
+                        <td>{{ item.precio }}</td>
                         <td>
                             <a href="" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
                             <a href="" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
                         </td>
-                    </tr>                                  
+                    </tr>
+                    {% endfor %}                               
                 </tbody>
-            </table>                          
+            </table>
+            {% endif %}                       
         </div>
     </div>           
 </div>
@@ -64,7 +70,7 @@
                             id="nombre" placeholder="Producto...">
                     </div>
                     <div class="form-group">
-                        <input type="number" name="precio" class="form-control form-control-user"
+                        <input type="number" name="precio" class="form-control form-control-user" step="any"
                             id="precio" placeholder="Precio...">
                     </div>                
             </div>
