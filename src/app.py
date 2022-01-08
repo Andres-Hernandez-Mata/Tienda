@@ -21,9 +21,15 @@ def listar_productos():
     return render_template("productos.html", productos = productos)
 
 @app.route("/crear-producto", methods=["POST"])
-def crear():
-    agregar_produco = Producto(codigo_barra=request.form["codigo_barra"], nombre=request.form["nombre"], precio=request.form["precio"])
+def crear_producto():
+    agregar_produco = Producto(codigo_barra = request.form["codigo_barra"], nombre = request.form["nombre"], precio = request.form["precio"])
     db.session.add(agregar_produco)
+    db.session.commit()
+    return redirect(url_for("listar_productos"))
+
+@app.route("/eliminar/<id>")
+def eliminar_producto(id):
+    Producto.query.filter_by(id=int(id)).delete()
     db.session.commit()
     return redirect(url_for("listar_productos"))
 
