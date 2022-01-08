@@ -32,15 +32,15 @@
                     <th class="all">Acciones</th>
                 </thead>
                 <tbody>
-                    {% for item in productos %}                               
+                    {% for producto in productos %}                               
                     <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.codigo_barra }}</td>
-                        <td>{{ item.nombre }}</td>                                      
-                        <td>{{ item.precio }}</td>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.codigo_barra }}</td>
+                        <td>{{ producto.nombre }}</td>                                      
+                        <td>{{ producto.precio }}</td>
                         <td>
                             <a href="" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
-                            <a href="" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                            <a href="{{url_for('eliminar_producto', id = producto.id)}}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}                               
