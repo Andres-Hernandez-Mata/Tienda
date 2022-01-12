@@ -27,6 +27,11 @@ def crear_producto():
     db.session.commit()
     return redirect(url_for("listar_productos"))
 
+@app.route("/editar/<id>")
+def editar_producto(id):
+    productos = Producto.query.get(id=int(id))
+    return productos
+
 @app.route("/eliminar/<id>")
 def eliminar_producto(id):
     Producto.query.filter_by(id=int(id)).delete()

@@ -39,7 +39,7 @@
                         <td>{{ producto.nombre }}</td>                                      
                         <td>{{ producto.precio }}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
+                            <a href="{{url_for('editar_producto', id = producto.id)}}" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
                             <a href="{{url_for('eliminar_producto', id = producto.id)}}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
