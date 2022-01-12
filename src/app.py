@@ -16,8 +16,9 @@ def main():
     return render_template("index.html")
 
 @app.route("/productos")
-def listar_productos():    
-    productos = Producto.query.all()
+def listar_productos():        
+    productos = db.session.execute('SELECT * FROM producto').fetchall()
+    db.session.close()
     return render_template("productos.html", productos = productos)
 
 @app.route("/crear-producto", methods=["POST"])
@@ -29,8 +30,8 @@ def crear_producto():
 
 @app.route("/editar/<id>")
 def editar_producto(id):
-    productos = Producto.query.get(id=int(id))
-    return productos
+    producto = Producto.query.get(id)
+    return redirect(url_for("listar_productos"))
 
 @app.route("/eliminar/<id>")
 def eliminar_producto(id):
