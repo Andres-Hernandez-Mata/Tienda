@@ -116,8 +116,11 @@
     </div>
     {% endblock %}
    
+    <div class="modal fade" id="popup"></div>
+
     <!-- Bootstrap core JavaScript-->
-    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/jquery/jquery.js"></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>    
     <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <!-- Core plugin JavaScript-->
@@ -130,6 +133,12 @@
     <script src="../static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <script src="../static/vendor/materialize/js/materialize.min.js"></script>
+
+    <script>
+        $('#editar_producto').modal({
+            preventScrolling: true
+        });
+    </script>
 
     {% block js_page %}  {% endblock %}
 
