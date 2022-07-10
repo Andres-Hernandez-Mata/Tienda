@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/tienda.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Producto(db.Model):
@@ -37,17 +38,26 @@ def crear_producto():
     db.session.close()
     return redirect(url_for("listar_productos"))
 
-@app.route("/editar", methods=["POST"])
-def editar():
-    producto = db.session.execute("SELECT * FROM producto WHERE id = :id", {"id": request.form.get("id")}).fetchall()
-    result = []
-    result.append({'id':producto[0][0],'codigo_barra':producto[0][1],'nombre':producto[0][2],'precio':producto[0][3]})
-    db.session.close()
-    return json.dumps(result)
+@app.route("/editar/<int:id>")
+def editar(id):
+    producto = Producto.query.get_or_404(id)
+    return render_template("editar_producto.html", producto = producto)
 
-@app.route("/eliminar_producto/<id>")
+@app.route("/editar_producto/<int:id>", methods=["POST"])
+def editar_producto(id):
+    producto = Producto.query.get_or_404(id)
+    if producto:
+        form = request.form        
+        producto.codigo_barra = form.get("codigo_barra")
+        producto.nombre = form.get("nombre")
+        producto.precio = form.get("precio")
+        db.session.commit()
+        db.session.close()
+    return redirect(url_for("listar_productos"))
+
+@app.route("/eliminar_producto/<int:id>")
 def eliminar_producto(id):
-    Producto.query.filter_by(id=int(id)).delete()
+    Producto.query.filter_by(id = id).delete()
     db.session.commit()
     db.session.close()
     return redirect(url_for("listar_productos"))
