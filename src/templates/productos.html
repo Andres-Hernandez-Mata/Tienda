@@ -39,7 +39,7 @@
                         <td>{{ producto.nombre }}</td>                                      
                         <td>{{ producto.precio }}</td>
                         <td>
-                            <a data-id={{ producto.id }} onclick="editar(this)" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
+                            <a href="{{url_for('editar', id = producto.id)}}"  class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a> 
                             <a href="{{url_for('eliminar_producto', id = producto.id)}}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -82,37 +82,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="editar_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Producto</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form role="form" class="user">
-                    <div class="form-group">
-                        <input type="text" name="codigo_barra" class="form-control form-control-user" 
-                            id="editar_codigo_barra" placeholder="Codigo de Barra...">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="nombre" class="form-control form-control-user"
-                            id="editar_nombre" placeholder="Producto...">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="precio" class="form-control form-control-user" step="any"
-                            id="editar_precio" placeholder="Precio...">
-                    </div>                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div></form>
-        </div>
-    </div>
-</div>
 {% endblock %}
 {% block js_page %}
 <script>  
