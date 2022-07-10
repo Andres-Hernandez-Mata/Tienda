@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+<div class="container-fluid">
+    <div class="form-row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Editar Producto</div>
+                <div class="card-body">
+                    <form action="/editar_producto/{{ producto.id }}" method="POST" class="user"> 
+                        <div class="form-group">
+                            <label for="label_codigo_barra">Codigo de Barra</label>
+                            <input type="text" name="codigo_barra" class="form-control form-control-user" 
+                                id="codigo_barra" value="{{ producto.codigo_barra }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="label_producto">Producto</label>
+                            <input type="text" name="nombre" class="form-control form-control-user" 
+                                id="nombre" value="{{ producto.nombre }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="label_precio">Precio</label>
+                            <input type="number" name="precio" class="form-control form-control-user" 
+                                id="precio" value="{{ producto.precio }}" required>
+                        </div>
+                        <div class="btn-group btn-group-toggle">
+                            <button class="btn btn-primary" type="submit">Actualizar</button>                            
+                        </div>                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js_page %}
+<script>  
+    
+</script>
+{% endblock %}
